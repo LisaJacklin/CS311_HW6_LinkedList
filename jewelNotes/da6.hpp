@@ -32,7 +32,7 @@ void reverseList(std::unique_ptr<LLNode2<ValType>> &head) {
     head = std::move(newHead); // The original list is now reversed
 }
 
-// Exercise B - Creating a simple map using a list
+// Exercise B - Banging my head against the wall
 
 // This is the template for our map, which stores pairs of keys and values
 template<typename KeyType, typename DataType>
