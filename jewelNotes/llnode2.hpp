@@ -2,7 +2,6 @@
 // Glenn G. Chappell
 // Started: 2023-10-26
 // Updated: 2023-10-30
-//
 // For CS 311 Fall 2023
 // Header for struct LLNode2
 // Singly Linked List node using smart pointers
@@ -62,7 +61,6 @@ struct LLNode2 {
         :_data(data),
          _next(std::move(next))
     {}
-
     // dctor
     // Iterative: avoid recursive destruction.
     // No-Throw Guarantee
@@ -71,7 +69,6 @@ struct LLNode2 {
         while (_next)
             pop_front(_next);
     }
-
     // No default ctor, no copy/move operations.
     LLNode2() = delete;
     LLNode2(const LLNode2 & other) = delete;
@@ -80,13 +77,9 @@ struct LLNode2 {
     LLNode2 & operator=(LLNode2 && other) = delete;
 
 };  // End struct LLNode2
-
-
 // *********************************************************************
 // struct LLNode2 - Associated global functions
 // *********************************************************************
-
-
 // size
 // Given unique_ptr to Linked List, return its size (number of nodes).
 // Pre:
@@ -108,8 +101,6 @@ std::size_t size(const std::unique_ptr<LLNode2<ValType>> & head) noexcept
     }
     return counter;
 }
-
-
 // push_front
 // Given unique_ptr to Linked List, and a ValType item, push the item
 // onto the front of the list. head becomes a pointer to the new list.
@@ -125,8 +116,6 @@ void push_front(std::unique_ptr<LLNode2<ValType>> & head,
 {
     head = std::make_unique<LLNode2<ValType>>(item, head);
 }
-
-
 // pop_front
 // Given unique_ptr to Linked List, removes first item from list, if
 // list is nonempty. If list is empty, does nothing.
@@ -145,6 +134,4 @@ void pop_front(std::unique_ptr<LLNode2<ValType>> & head) noexcept
     }
 }
 
-
 #endif  //#ifndef FILE_LLNODE2_HPP_INCLUDED
-
