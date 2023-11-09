@@ -1,4 +1,38 @@
 ```cpp
+// da6.hpp
+// Lisa Jacklin && Jewel Maldonado
+// 2023-11-03
+// Interface for Assignment 6
+
+#ifndef DA6_HPP_INCLUDED
+#define DA6_HPP_INCLUDED
+
+// Include the necessary headers for memory management and the linked list node
+#include <memory> // For std::unique_ptr and std::make_unique
+#include "llnode2.hpp" // Include the definition of the provided linked list node
+#include <stdexcept> // Include standard exceptions
+#include <utility> // Include utility library for std::move
+
+// Define a template function to reverse a singly linked list.
+template<typename ValType>
+void reverseList(std::unique_ptr<LLNode2<ValType>> &head) {
+    // Initialize a new head pointer for the reversed list to nullptr
+    std::unique_ptr<LLNode2<ValType>> newHead = nullptr;
+    // Temporary pointer to hold the next node in the original list
+    std::unique_ptr<LLNode2<ValType>> nextNode = nullptr;
+
+    // Loop through the list until we reach the end which is (null)
+    while (head) {
+        nextNode = std::move(head->_next); // Save the next node
+        head->_next = std::move(newHead); // Reverse the current node's link
+        newHead = std::move(head); // Move the current node to the new head of the reversed list
+        head = std::move(nextNode); // Go to the next node in the original list
+    }
+
+    // After all nodes reversed, update the original head to point to the new head
+    head = std::move(newHead); // The original list is now reversed
+}
+
 // Exercise B - Associative Dataset Class Template using a Linked List
 
 template<typename KeyType, typename DataType>
